@@ -40,8 +40,21 @@ rank(controlability_q2)
 des_poles = [-1, -4, -7, -10];
 K=acker(A,B,des_poles)
 eig(A-B*K)
+C = eye(4);
 %Q=20*eye(4);
 % R=8;
 % K_lqr2=lqr(A,B,Q,R);
 % eig(A-B*K_lqr2)
  %K_lqr =  -14.1421  171.8846  -25.2787   54.7535
+
+ %% Second controller
+
+ des_poles = [-3, -3, -3, -3];
+K=acker(A,B,des_poles)
+eig(A-B*K)
+
+%% LQR
+Q= diag([15 15 1 1]);
+R=0.6;
+K_lqr2=lqr(A,B,Q,R)
+eig(A-B*K_lqr2)
